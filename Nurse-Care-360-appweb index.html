@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nurse+Care 360 - Comprehensive Nursing Assistant App</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #88c9f9;
+            --secondary-blue: #d4e9ff;
+            --accent-red: #ff6b6b;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --text-light: #555555;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        
+        .logo-text span {
+            color: var(--accent-red);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .cta-button {
+            background-color: var(--accent-red);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #ff5252;
+            color: white;
+        }
+        
+        .hero {
+            background-color: var(--secondary-blue);
+            padding: 8rem 5% 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .app-preview {
+            max-width: 300px;
+            margin: 2rem auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .app-screen {
+            width: 100%;
+            display: block;
+        }
+        
+        .features {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .care-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .care-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+        
+        .care-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .care-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--secondary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .care-card h3 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .care-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .feature-details {
+            margin-top: 4rem;
+        }
+        
+        .feature-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .tab-button {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--secondary-blue);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--text-dark);
+        }
+        
+        .tab-button.active {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            color: var(--primary-blue);
+        }
+        
+        .feature-text h4 {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .feature-text p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .cta-section {
+            background-color: var(--primary-blue);
+            padding: 5rem 5%;
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        footer {
+            background-color: var(--text-dark);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem;
+            }
+            
+            .hero {
+                padding: 6rem 1rem 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .care-system {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-heartbeat" style="font-size: 2rem; color: var(--accent-red);"></i>
+                </div>
+                <div class="logo-text">Nurse+<span>Care 360</span></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="cta-button">Download Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Revolutionizing Nursing Care with C.A.R.E.</h1>
+            <p>A comprehensive nursing assistant app designed to improve efficiency, accuracy, and care coordination using the C.A.R.E. system.</p>
+            <div class="hero-buttons">
+                <a href="#" class="cta-button">Get Started</a>
+                <a href="#" class="cta-button" style="background-color: var(--primary-blue);">Watch Demo</a>
+            </div>
+            <div class="app-preview">
+                <img src="https://via.placeholder.com/300x600/88c9f9/ffffff?text=Nurse+Care+360" alt="Nurse+Care 360 App Preview" class="app-screen">
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="section-title">
+            <h2>The C.A.R.E. System</h2>
+            <p>Four powerful categories that work together to streamline nursing workflows and improve patient outcomes</p>
+        </div>
+        
+        <div class="care-system">
+            <div class="care-card">
+                <div class="care-icon">C</div>
+                <h3>CHART-CONNECT</h3>
+                <p>Chart & Clinical Information system that keeps all patient records organized and accessible.</p>
+            </div>
+            <div class="care-card">
+                <div class="care-icon">A</div>
+                <h3>ACTIVE VITALS</h3>
+                <p>Real-time vital signs monitoring with alerts for abnormal readings and trend tracking.</p>
+            </div>
+            <div class="care-card">
+                <div class="care-icon">R</div>
+                <h3>RXLEARN</h3>
+                <p>Comprehensive medication management with teaching guides and administration logs.</p>
+            </div>
+            <div class="care-card">
+                <div class="care-icon">E</div>
+                <h3>ENGAGE-LINK</h3>
+                <p>Seamless communication and collaboration with healthcare team members.</p>
+            </div>
+        </div>
+        
+        <div class="feature-details" id="how-it-works">
+            <div class="section-title">
+                <h2>App Features</h2>
+                <p>Explore the powerful tools that make Nurse+Care 360 essential for modern nursing practice</p>
+            </div>
+            
+            <div class="feature-tabs">
+                <button class="tab-button active" data-tab="chart">CHART-CONNECT</button>
+                <button class="tab-button" data-tab="vitals">ACTIVE VITALS</button>
+                <button class="tab-button" data-tab="rx">RXLEARN</button>
+                <button class="tab-button" data-tab="engage">ENGAGE-LINK</button>
+            </div>
+            
+            <div class="tab-content active" id="chart-tab">
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">C1</div>
+                        <div class="feature-text">
+                            <h4>Patient Record Chart</h4>
+                            <p>Comprehensive digital charting system that organizes all patient information in one place.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">C2</div>
+                        <div class="feature-text">
+                            <h4>Demographic Details</h4>
+                            <p>Quick access to patient demographics, contact information, and emergency contacts.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">C3</div>
+                        <div class="feature-text">
+                            <h4>Medical History</h4>
+                            <p>Detailed medical history including past surgeries, chronic conditions, and family history.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">C4</div>
+                        <div class="feature-text">
+                            <h4>Allergies & Diagnoses</h4>
+                            <p>Clear display of patient allergies and current diagnoses with severity indicators.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">C5</div>
+                        <div class="feature-text">
+                            <h4>Clinical Notes</h4>
+                            <p>Organized section for nurse's and doctor's notes with timestamp and signature.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">C6</div>
+                        <div class="feature-text">
+                            <h4>Digital Charting</h4>
+                            <p>Intuitive interface for quick documentation with customizable templates.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="vitals-tab">
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">A1</div>
+                        <div class="feature-text">
+                            <h4>Vital Signs Monitoring</h4>
+                            <p>Track and record vital signs by time with intuitive graphing capabilities.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">A2</div>
+                        <div class="feature-text">
+                            <h4>Wearable Integration</h4>
+                            <p>Seamless connection with smart watches and wearable devices for continuous monitoring.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">A3</div>
+                        <div class="feature-text">
+                            <h4>Patient ID Verification</h4>
+                            <p>Displays patient bracelet ID to ensure proper identification during care.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">A4</div>
+                        <div class="feature-text">
+                            <h4>Abnormal VS Alerts</h4>
+                            <p>Instant notifications when vital signs fall outside preset parameters.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">A5</div>
+                        <div class="feature-text">
+                            <h4>Trend Analysis</h4>
+                            <p>Visual representation of vital sign trends over customizable time periods.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">A6</div>
+                        <div class="feature-text">
+                            <h4>Custom Parameters</h4>
+                            <p>Set patient-specific normal ranges for more personalized care.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="rx-tab">
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">R1</div>
+                        <div class="feature-text">
+                            <h4>Drug Records</h4>
+                            <p>Comprehensive medication list including prescriptions, OTCs, and supplements.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">R2</div>
+                        <div class="feature-text">
+                            <h4>Medication Administration</h4>
+                            <p>Digital log for medication administration with barcode scanning capability.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">R3</div>
+                        <div class="feature-text">
+                            <h4>Teaching Guides</h4>
+                            <p>Patient-friendly medication teaching guides with visual aids.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">R4</div>
+                        <div class="feature-text">
+                            <h4>Drug Handbook</h4>
+                            <p>Integrated nursing drug reference with latest updates.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">R5</div>
+                        <div class="feature-text">
+                            <h4>Dosage Schedules</h4>
+                            <p>Customizable medication schedules with reminders.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">R6</div>
+                        <div class="feature-text">
+                            <h4>Interactions Checker</h4>
+                            <p>Automatic drug interaction alerts based on patient's medication profile.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="engage-tab">
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">E1</div>
+                        <div class="feature-text">
+                            <h4>Real-time Communication</h4>
+                            <p>Secure messaging between healthcare team members.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">E2</div>
+                        <div class="feature-text">
+                            <h4>Referral System</h4>
+                            <p>Streamlined process for making and tracking referrals.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">E3</div>
+                        <div class="feature-text">
+                            <h4>HCP Collaboration</h4>
+                            <p>Tools for effective collaboration with doctors, nurses, and specialists.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">E4</div>
+                        <div class="feature-text">
+                            <h4>Offline Mode</h4>
+                            <p>Works without internet connection with satellite signal backup.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">E5</div>
+                        <div class="feature-text">
+                            <h4>Message Board</h4>
+                            <p>Centralized communication hub for patient care teams.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">E6</div>
+                        <div class="feature-text">
+                            <h4>Task Coordination</h4>
+                            <p>Assign, track, and complete patient care tasks efficiently.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to Transform Your Nursing Practice?</h2>
+        <p>Join thousands of healthcare professionals who trust Nurse+Care 360 to deliver better patient care with greater efficiency.</p>
+        <a href="#" class="cta-button">Download Now</a>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-logo">
+            <div class="logo-icon">
+                <i class="fas fa-heartbeat" style="font-size: 2rem; color: var(--accent-red);"></i>
+            </div>
+            <div class="logo-text">Nurse+<span>Care 360</span></div>
+        </div>
+        <ul class="footer-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+        <p class="copyright">© 2025 Nurse+Care 360. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
